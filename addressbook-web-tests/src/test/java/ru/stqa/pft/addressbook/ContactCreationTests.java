@@ -1,4 +1,4 @@
-package ru.stqa.addressbook;
+package ru.stqa.pft.addressbook;
 
 import java.util.concurrent.TimeUnit;
 import org.testng.annotations.*;
@@ -30,33 +30,33 @@ public class ContactCreationTests {
   public void testContactCreation() throws Exception {
 
     initContactCreation();
-    fillContactForm("Alex", "Duglas", "ad", "NetCrack", "New York", "test", "66677888");
+    fillContactForm(new ContactData("Alex", "Duglas", "ad", "NetCrack", "New York", "test", "66677888"));
   }
 
-  private void fillContactForm(String firstname, String lastname, String nickname, String company, String address, String home, String mobile) {
+  private void fillContactForm(ContactData contactData) {
     wd.findElement(By.name("firstname")).click();
     wd.findElement(By.name("firstname")).clear();
-    wd.findElement(By.name("firstname")).sendKeys(firstname);
+    wd.findElement(By.name("firstname")).sendKeys(contactData.getFirstname());
     wd.findElement(By.name("lastname")).click();
     wd.findElement(By.name("lastname")).clear();
-    wd.findElement(By.name("lastname")).sendKeys(lastname);
+    wd.findElement(By.name("lastname")).sendKeys(contactData.getLastname());
     wd.findElement(By.name("nickname")).click();
     wd.findElement(By.name("nickname")).clear();
-    wd.findElement(By.name("nickname")).sendKeys(nickname);
+    wd.findElement(By.name("nickname")).sendKeys(contactData.getNickname());
     wd.findElement(By.name("company")).click();
     wd.findElement(By.name("company")).clear();
-    wd.findElement(By.name("company")).sendKeys(company);
+    wd.findElement(By.name("company")).sendKeys(contactData.getCompany());
     wd.findElement(By.name("address")).click();
     wd.findElement(By.name("address")).click();
     wd.findElement(By.name("address")).clear();
-    wd.findElement(By.name("address")).sendKeys(address);
+    wd.findElement(By.name("address")).sendKeys(contactData.getAddress());
     wd.findElement(By.name("theform")).click();
     wd.findElement(By.name("home")).click();
     wd.findElement(By.name("home")).clear();
-    wd.findElement(By.name("home")).sendKeys(home);
+    wd.findElement(By.name("home")).sendKeys(contactData.getHome());
     wd.findElement(By.name("mobile")).click();
     wd.findElement(By.name("mobile")).clear();
-    wd.findElement(By.name("mobile")).sendKeys(mobile);
+    wd.findElement(By.name("mobile")).sendKeys(contactData.getMobile());
     wd.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Notes:'])[1]/following::input[1]")).click();
   }
 
