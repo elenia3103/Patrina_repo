@@ -3,17 +3,16 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class NavigationHelper {
-    private WebDriver wd;
+public class NavigationHelper extends BaseHelper{
 
     public NavigationHelper(WebDriver wd) {
-        this.wd = wd;
+        super(wd);
     }
     public void returnToGroupPage() {
-        wd.findElement(By.linkText("group page")).click();
+        click(By.linkText("group page"));
     }
     public void returnToContactPage () {
-        wd.findElement(By.linkText("home page")).click();
+        click(By.linkText("home page"));
     }
 
 
