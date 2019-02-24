@@ -9,7 +9,6 @@ public class ContactHelper extends BaseHelper {
     public ContactHelper(WebDriver wd) {
         super(wd);
     }
-
     public void fillContactForm(ContactData contactData) {
         type(By.name("firstname"), contactData.getFirstname());
         type(By.name("lastname"),contactData.getLastname());
@@ -35,7 +34,15 @@ public class ContactHelper extends BaseHelper {
         click(By.name("update"));
     }
 
-    public void goToContactPage() {
-        click(By.linkText("home"));
+    public void selectContact() {
+        click(By.name("selected[]"));
+    }
+
+    public void deleteSelectedContact() {
+        click(By.xpath("//input[@value='Delete']"));
+    }
+
+    public void acceptDeleteContact() {
+        wd.switchTo().alert().accept();
     }
 }

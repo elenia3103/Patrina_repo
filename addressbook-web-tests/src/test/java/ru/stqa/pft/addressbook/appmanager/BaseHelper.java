@@ -21,7 +21,7 @@ public class BaseHelper {
         wd.findElement(locator).clear();
         wd.findElement(locator).sendKeys(text);
     }
-    private boolean isElementPresent(By by) {
+    protected boolean isElementPresent(By by) {
         try {
             wd.findElement(by);
             return true;
@@ -29,7 +29,7 @@ public class BaseHelper {
             return false;
         }
     }
-    private boolean isAlertPresent() {
+    protected boolean isAlertPresent() {
         try {
             wd.switchTo().alert();
             return true;
