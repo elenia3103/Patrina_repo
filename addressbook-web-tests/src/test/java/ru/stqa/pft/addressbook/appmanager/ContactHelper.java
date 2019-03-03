@@ -19,11 +19,6 @@ public class ContactHelper extends BaseHelper {
         type(By.name("address"),contactData.getAddress());
         type(By.name("home"),contactData.getHome());
         type(By.name("mobile"),contactData.getMobile());
-        if (creation) {
-            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-        } else {
-            Assert.assertFalse(isElementPresent(By.name("new_group")));
-        }
     }
     public void submitToContactPage () {
         click(By.xpath("(//input[@name='submit'])[2]"));
@@ -51,5 +46,22 @@ public class ContactHelper extends BaseHelper {
 
     public void acceptDeleteContact() {
         wd.switchTo().alert().accept();
+    }
+
+    public void createContact(ContactData contact) {
+        initContactCreation();
+        fillContactForm(contact, true);
+        submitToContactPage();
+        returnToContactPage();
+
+    }
+
+    private void returnToContactPage() {
+            click(By.linkText("home page"));
+    }
+
+    public boolean isThereAContact() {
+        return isElementPresent(By.name("selected[]"));
+
     }
 }
