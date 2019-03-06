@@ -12,9 +12,9 @@ public class GroupModificationTests extends TestBase {
             app.getGroupHelper().createGroup(new GroupData("testov", "test", null));
         }
         int before = app.getGroupHelper().getGroupCount();
-        app.getGroupHelper().selectGroup();
+        app.getGroupHelper().selectGroup(0);
         app.getGroupHelper().initGroupModification();
-        app.getGroupHelper().fillGroupForm(new GroupData("testov", "test", "testovodze"));
+        app.getGroupHelper().fillGroupForm(new GroupData("testovich", "test", "testovodze"));
         app.getGroupHelper().submitGroupModification();
         app.getNavigationHelper().returnToGroupPage();
         int after = app.getGroupHelper().getGroupCount();
