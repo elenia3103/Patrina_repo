@@ -13,7 +13,7 @@ public class ContactDeletionTests extends TestBase{
             app.getContactHelper().createContact(new ContactData("Alex", "Host", "nex", "Net",
                     "NYC", "9877645", "78765788","testov"));
         }
-        app.getContactHelper().selectContact();
+        app.getContactHelper().selectContact(0);
         app.getContactHelper().deleteSelectedContact();
         app.getContactHelper().acceptDeleteContact();
         int after = app.getContactHelper().getContactCount();
