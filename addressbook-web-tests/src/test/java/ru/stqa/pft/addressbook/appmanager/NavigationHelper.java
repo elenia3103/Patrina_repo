@@ -8,6 +8,9 @@ public class NavigationHelper extends BaseHelper{
     public NavigationHelper(WebDriver wd) {
         super(wd);
     }
+    public void goToGroupPage () {
+        click(By.linkText("groups"));
+    }
     public void returnToGroupPage() {
         click(By.linkText("group page"));
     }
