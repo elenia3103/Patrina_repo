@@ -5,11 +5,11 @@ import java.util.Objects;
 public class ContactData {
     private final String firstname;
     private final String lastname;
-    private final String nickname;
-    private final String company;
-    private final String address;
-    private final String home;
-    private final String mobile;
+    private String nickname;
+    private String company;
+    private String address;
+    private String home;
+    private String mobile;
     private String group;
     private  int id;
 
@@ -49,6 +49,11 @@ public class ContactData {
         this.mobile = mobile;
         this.group = group;
         this.id = Integer.MAX_VALUE;
+    }
+    public ContactData(int id, String firstname, String lastname) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.id = id;
     }
 
     public String getFirstname() {

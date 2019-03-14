@@ -33,7 +33,7 @@ public class ContactHelper extends BaseHelper {
     }
 
     public void initContactModification(int index) {
-        wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
+        wd.findElements(By.cssSelector("img[alt=\"Edit\"]")).get(index).click();
     }
 
     public void submitContactModification() {
@@ -81,7 +81,7 @@ public class ContactHelper extends BaseHelper {
             String lastname = box.get(1).getText();
             String firstname = box.get(2).getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            ContactData contact = new ContactData(id,firstname,lastname,null,null,null,null,null,null);
+            ContactData contact = new ContactData(id, firstname,lastname);
             contacts.add(contact);
         }
 
