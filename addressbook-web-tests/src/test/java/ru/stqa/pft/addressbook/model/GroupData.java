@@ -17,21 +17,22 @@ public class GroupData {
         return header;
     }
 
+    public String getFooter() {
+        return footer;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GroupData groupData = (GroupData) o;
-        return Objects.equals(name, groupData.name);
+        return id == groupData.id &&
+                Objects.equals(name, groupData.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
-    }
-
-    public String getFooter() {
-        return footer;
+        return Objects.hash(name, id);
     }
 
     @Override
