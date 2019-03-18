@@ -8,7 +8,9 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends BaseHelper {
 
@@ -31,17 +33,17 @@ public class ContactHelper extends BaseHelper {
     public void initContactCreation() {
         click(By.linkText("add new"));
     }
-
-    public void initContactModification(int index) {
-        wd.findElements(By.cssSelector("img[alt=\"Edit\"]")).get(index).click();
+    
+    public void initContactModificationById (int id) {
+        wd.findElement(By.cssSelector("a[href='edit.php?id="+ id +"']")).click();
     }
 
     public void submitContactModification() {
         click(By.name("update"));
     }
 
-    public void selectContact(int index) {
-        wd.findElements(By.name("selected[]")).get(index).click();
+    public void selectContactById(int id) {
+        wd.findElement(By.cssSelector("input[value='"+id+"']")).click();
     }
 
     public void deleteSelectedContact() {
@@ -56,23 +58,26 @@ public class ContactHelper extends BaseHelper {
         initContactCreation();
         fillContactForm(contact);
         submitToContactPage();
-        returnToContactPage();
+        contactPage();
 
     }
-    public void modify(int index, ContactData contact) {
-        initContactModification(index);
+    public void modify(ContactData contact) {
+        initContactModificationById(contact.getId());
         fillContactForm(contact);
         submitContactModification();
         returnToContactPage();
     }
-    public void delete(int index) {
-        selectContact(index);
+    public void delete(ContactData contact) {
+        selectContactById(contact.getId());
         deleteSelectedContact();
         acceptDeleteContact();
     }
 
     private void returnToContactPage() {
             click(By.linkText("home page"));
+    }
+    public void contactPage() {
+        click(By.linkText("home"));
     }
 
     public boolean isThereAContact() {
@@ -84,8 +89,9 @@ public class ContactHelper extends BaseHelper {
         return wd.findElements(By.name(("selected[]"))).size();
     }
 
-    public List<ContactData> list() {
-        List<ContactData> contacts = new ArrayList<>();
+
+    public Set<ContactData> all() {
+        Set<ContactData> contacts = new HashSet<ContactData>();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element: elements) {
             List<WebElement> box = element.findElements(By.tagName("td"));
