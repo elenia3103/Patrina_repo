@@ -33,7 +33,7 @@ public class ContactHelper extends BaseHelper {
     public void initContactCreation() {
         click(By.linkText("add new"));
     }
-    
+
     public void initContactModificationById (int id) {
         wd.findElement(By.cssSelector("a[href='edit.php?id="+ id +"']")).click();
     }
