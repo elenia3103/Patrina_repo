@@ -14,7 +14,8 @@ public class ContactPhoneTests extends TestBase {
     @BeforeMethod
     public void ensurePreonditions() {
         app.goTo().contactPage();
-        if (app.contact().all().size()==0) {
+        if (app.db().contacts().size()==0) {
+            app.goTo().contactPage();
             app.contact().create(new ContactData().withFirstname("Alexey").withLastname("Host").withNickname("nex").withCompany("Net")
                     .withHome("9999").withMobile("9877645").withAddress("Yrupinsk").withGroup("testov"));
         }
@@ -22,7 +23,7 @@ public class ContactPhoneTests extends TestBase {
     @Test
     public void testContactPhone() {
         app.goTo().contactPage();
-        ContactData contact  = app.contact().all().iterator().next();
+        ContactData contact  = app.db().contacts().iterator().next();
         ContactData contactInfoFromEditForm = app.contact().infoEditForm(contact);
         
         assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
@@ -31,7 +32,7 @@ public class ContactPhoneTests extends TestBase {
     @Test
     public void testContactEmail() {
         app.goTo().contactPage();
-        ContactData contact  = app.contact().all().iterator().next();
+        ContactData contact  = app.db().contacts().iterator().next();
         ContactData contactInfoFromEditForm = app.contact().infoEditForm(contact);
 
         assertThat(contact.getAllEmail(), equalTo(mergeEmail(contactInfoFromEditForm)));
@@ -40,7 +41,7 @@ public class ContactPhoneTests extends TestBase {
     @Test
     public void testContactAddress() {
         app.goTo().contactPage();
-        ContactData contact  = app.contact().all().iterator().next();
+        ContactData contact  = app.db().contacts().iterator().next();
         ContactData contactInfoFromEditForm = app.contact().infoEditForm(contact);
 
         assertThat(contact.getAddress(), equalTo(contactInfoFromEditForm.getAddress()));

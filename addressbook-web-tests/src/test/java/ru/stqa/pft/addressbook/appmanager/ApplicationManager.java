@@ -24,6 +24,7 @@ public class ApplicationManager {
     private ContactHelper contactHelper;
     private GroupHelper groupHelper;
     private String browser;
+    private DbHelper dbHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -33,6 +34,7 @@ public class ApplicationManager {
     public void init() throws IOException {
         String target = System.getProperty("target", "local");
 
+        dbHelper = new DbHelper();
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties",target))));
         if (browser.equals(BrowserType.FIREFOX)) {
             wd = new FirefoxDriver();
@@ -41,6 +43,7 @@ public class ApplicationManager {
         } else if (browser.equals(BrowserType.EDGE)) {
             wd = new EdgeDriver();
         }
+
 
         wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         wd.get(properties.getProperty("web.baseUrl"));
@@ -66,5 +69,9 @@ public class ApplicationManager {
 
     public NavigationHelper goTo() {
         return navigationHelper;
+    }
+
+    public DbHelper db() {
+        return dbHelper;
     }
 }
