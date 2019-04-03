@@ -43,7 +43,7 @@ public class SecondGroupCreationTests extends TestBase {
     Groups after = app.db().groups();
 
     assertThat(after, equalTo(before.withAdded(group.withId(after.stream().mapToInt((g) ->g.getId()).max().getAsInt()))));
-
+    verifyGroupListInUI();
   }
   @Test
   public void testSecondBadGroupCreation() throws Exception {
@@ -54,7 +54,7 @@ public class SecondGroupCreationTests extends TestBase {
     assertThat(app.group().count(), equalTo(before.size()));
     Groups after = app.db().groups();
     assertThat(after, equalTo(before));
-
+    verifyGroupListInUI();
   }
 
 }
