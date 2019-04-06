@@ -58,7 +58,7 @@ public class ContactData {
     @Transient
     private File photo;
 
-    @ManyToMany
+    @ManyToMany (fetch = FetchType.EAGER)
     @JoinTable(name = "address_in_groups", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
     private Set<GroupData> groups = new HashSet<GroupData>();
 
@@ -230,5 +230,10 @@ public class ContactData {
 
     public int getId() {
         return id;
+    }
+
+    public ContactData inGroups(GroupData group) {
+        groups.add(group);
+        return this;
     }
 }
