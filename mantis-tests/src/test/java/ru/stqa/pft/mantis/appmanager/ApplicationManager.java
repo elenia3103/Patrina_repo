@@ -20,6 +20,9 @@ public class ApplicationManager {
     private RegistrationHelper registrationHelper;
     private FtpHelper ftp;
     private MailHelper mailHelper;
+    private DbHelper dbHelper;
+    private PasswordHelper passwordHelper;
+    private HttpSession session;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -44,6 +47,12 @@ public class ApplicationManager {
         return new HttpSession(this);
     }
 
+    public HttpSession session() {
+        if(session == null) {
+            session = new HttpSession(this);
+        }
+        return session;
+    }
     public RegistrationHelper registration() {
         if (registrationHelper == null) {
             registrationHelper = new RegistrationHelper(this);
@@ -80,6 +89,18 @@ public class ApplicationManager {
             wd.get(properties.getProperty("web.baseUrl"));
         }
         return wd;
+    }
+    public DbHelper db() {
+        if(dbHelper==null){
+            dbHelper = new DbHelper();
+        }
+        return dbHelper;
+    }
+    public PasswordHelper passwordHelper(){
+        if(passwordHelper==null){
+            passwordHelper = new PasswordHelper(this);
+        }
+        return passwordHelper;
     }
 }
 
