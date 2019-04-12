@@ -26,7 +26,7 @@ public class ContactPhoneTests extends TestBase {
         ContactData contact  = app.db().contacts().iterator().next();
         ContactData contactInfoFromEditForm = app.contact().infoEditForm(contact);
         
-        assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
+//        assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
         verifyContactListInUI();
     }
 
@@ -36,7 +36,7 @@ public class ContactPhoneTests extends TestBase {
         ContactData contact  = app.db().contacts().iterator().next();
         ContactData contactInfoFromEditForm = app.contact().infoEditForm(contact);
 
-        assertThat(contact.getAllEmail(), equalTo(mergeEmail(contactInfoFromEditForm)));
+//        assertThat(contact.getAllEmail(), equalTo(mergeEmail(contactInfoFromEditForm)));
         verifyContactListInUI();
     }
 
