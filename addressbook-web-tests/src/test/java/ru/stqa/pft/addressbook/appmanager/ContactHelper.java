@@ -9,10 +9,7 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ContactHelper extends BaseHelper {
 
@@ -81,7 +78,7 @@ public class ContactHelper extends BaseHelper {
     }
     public void modify(ContactData contact) {
         initContactModificationById(contact.getId());
-        fillContactForm(contact,true);
+        fillContactForm(contact,false);
         submitContactModification();
         returnToContactPage();
         contactCache = null;
